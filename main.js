@@ -3,9 +3,14 @@ var scores, roundScores, activePlayer;
 
 scores = [0, 0];
 roundScores = 0;
-activePlayer = 1;
+activePlayer = 0;
  
 document.querySelector('.dice').style.display= 'none';
+
+document.getElementById('score--0').textContent = '0';
+document.getElementById('score--1').textContent = '0';
+document.getElementById('current--0').textContent = '0';
+document.getElementById('current--1').textContent = '0';
 
 document.querySelector('.btn--roll').addEventListener('click', function() {
     
@@ -19,6 +24,16 @@ document.querySelector('.btn--roll').addEventListener('click', function() {
 
 
     // Update the round score if the rolled number is not 1 (players cant continue if they roll 1)
+
+    if (dice !== 1) {
+        // add score
+        roundScores += dice;
+        document.querySelector('#current--' + activePlayer).textContent = roundScores;
+
+    }else{
+        //next player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    }
 
 })
 
