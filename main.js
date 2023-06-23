@@ -31,6 +31,34 @@ document.querySelector('.btn--roll').addEventListener('click', function() {
 
 })
 
+// Hold button stores the current score in the global score.
+document.querySelector('.btn--hold').addEventListener('click', function() {
+    
+    // add currnet score to global score
+
+    scores[activePlayer] += roundScores;
+
+    // update the users interface
+
+    document.querySelector('#score--' + activePlayer).innerHTML = scores[activePlayer]
+
+    // check if player won the game
+
+    if (scores[activePlayer] >= 10) {
+
+    document.querySelector('#name--'+ activePlayer).innerHTML = 'winner';
+    document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.player--' + activePlayer).classList.add('winner!')
+
+    }
+    else{
+        
+     // next player
+        nextPlayer()
+    }
+
+})
+
 /**
  * this function is used to switch between players if the dice reaches 1 on the activePlayer
  */
@@ -45,22 +73,6 @@ function nextPlayer() {
 
     document.querySelector('.dice').style.display = 'none';
 }
-
-document.querySelector('.btn--hold').addEventListener('click', function() {
-    
-    // add currnet score to global score
-
-    scores[activePlayer] += roundScores;
-
-    // update the users interface
-
-    document.querySelector('#score--' + activePlayer).innerHTML = scores[activePlayer]
-
-    // check if player won the game
-
-})
-
-
 
 
 /**
